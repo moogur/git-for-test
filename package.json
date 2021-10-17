@@ -1,0 +1,21 @@
+{
+  "name": "git-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Testing...\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moogur/git-for-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moogur/git-for-test/issues"
+  },
+  "homepage": "https://github.com/Moogur/git-for-test#readme"
+}
