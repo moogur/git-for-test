@@ -76,5 +76,5 @@ module.exports = {
   subjectLimit: 72,
 
   // Вопросы которые не надо задавать
-  skipQuestions: ["body", "footer"],
+  skipQuestions: ["body"],
 };
