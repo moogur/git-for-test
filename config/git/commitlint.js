@@ -49,6 +49,9 @@ module.exports = {
     // Нижний колонтитул начинается с пустой строки
     "footer-leading-blank": [2, "always"],
 
+    // Нижний колонтитул не может быть пустым
+    "footer-empty": [2, "never"],
+
     // Перечислим все возможные варианты коммитов
     "type-enum": [2, "always", ["build", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]],
   },
