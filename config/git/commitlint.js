@@ -46,6 +46,9 @@ module.exports = {
     // Предмет (короткое описание) не может быть пустым
     "subject-empty": [2, "never"],
 
+    // Нижний колонтитул начинается с пустой строки
+    "footer-leading-blank": [2, "always"],
+
     // Перечислим все возможные варианты коммитов
     "type-enum": [2, "always", ["build", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]],
   },
