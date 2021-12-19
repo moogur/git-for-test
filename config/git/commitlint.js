@@ -13,11 +13,11 @@ module.exports = {
     // Описание не может быть пустым
     "subject-empty": [2, "never"],
 
-    // Тело начинается с пустой строки
-    "body-leading-blank": [2, "always"],
-
     // Максимальная длина тела
     "body-max-length": [2, "always", cz.subjectLimit],
+
+    // Тело всегда только в нижнем регистре
+    "body-case": [2, "always", "lower-case"],
 
     // Тип всегда только в нижнем регистре
     "type-case": [2, "always", "lower-case"],
@@ -42,9 +42,6 @@ module.exports = {
 
     // Предмет (короткое описание) не может быть пустым
     "subject-empty": [2, "never"],
-
-    // Нижний колонтитул начинается с пустой строки
-    "footer-leading-blank": [2, "always"],
 
     // Перечислим все возможные варианты коммитов
     "type-enum": [2, "always", ["build", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]],
