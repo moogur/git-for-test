@@ -1,4 +1,1 @@
-exampledfd
-вsfs
-d
-s
+example
