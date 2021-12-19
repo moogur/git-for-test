@@ -70,10 +70,10 @@ module.exports = {
   allowBreakingChanges: false,
 
   // Префикс для нижнего колонтитула
-  footerPrefix: "metadata:",
+  // footerPrefix: "metadata:",
 
   // limit subject length
-  subjectLimit: 72,
+  // subjectLimit: 72,
 
   // Вопросы которые не надо задавать
   skipQuestions: ["body", "footer"],
