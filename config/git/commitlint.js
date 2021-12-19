@@ -20,7 +20,7 @@ module.exports = {
     "body-max-length": [2, "always", cz.subjectLimit],
 
     // Тело всегда только в нижнем регистре
-    "body-case": [2, "always", "lower-case"],
+    // "body-case": [2, "always", "lower-case"],
 
     // Тип всегда только в нижнем регистре
     "type-case": [2, "always", "lower-case"],
@@ -50,7 +50,7 @@ module.exports = {
     "type-enum": [2, "always", ["build", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]],
 
     // Нижний колонтитул не может быть пустым
-    "footer-empty": [2, "never"],
+    // "footer-empty": [2, "never"],
 
     // Максимальная длина нижнего колонтитула
     "footer-max-length": [2, "always", cz.subjectLimit],
