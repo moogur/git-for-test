@@ -26,6 +26,11 @@
       "config": "config/git/commitizen.js"
     }
   },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './config/git/commitlint.js'"
+    }
+  },
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
     "cz-customizable": "^6.3.0",
