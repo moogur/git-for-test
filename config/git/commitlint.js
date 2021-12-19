@@ -17,7 +17,7 @@ module.exports = {
     "body-leading-blank": [2, "always"],
 
     // Тело не может быть пустым
-    "body-empty": [2, "never"],
+    "body-min-length": [2, "always", 1],
 
     // Максимальная длина тела
     "body-max-length": [2, "always", cz.subjectLimit],
