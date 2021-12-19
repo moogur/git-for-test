@@ -16,9 +16,6 @@ module.exports = {
     // Тело начинается с пустой строки
     "body-leading-blank": [2, "always"],
 
-    // Тело не может быть пустым
-    "body-empty": [2, "never"],
-
     // Максимальная длина тела
     "body-max-length": [2, "always", cz.subjectLimit],
 
@@ -48,9 +45,6 @@ module.exports = {
 
     // Нижний колонтитул начинается с пустой строки
     "footer-leading-blank": [2, "always"],
-
-    // Нижний колонтитул не может быть пустым
-    "footer-empty": [2, "never"],
 
     // Перечислим все возможные варианты коммитов
     "type-enum": [2, "always", ["build", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]],
