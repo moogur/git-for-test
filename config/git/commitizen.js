@@ -39,5 +39,5 @@ module.exports = {
   subjectLimit: 200,
 
   // Вопросы которые не надо задавать
-  skipQuestions: ["body", "footer"],
+  skipQuestions: ["body", "footer", "breaking"],
 };
