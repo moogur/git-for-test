@@ -4,7 +4,7 @@ const cz = require("./commitizen.js");
 
 module.exports = {
   rules: {
-    // Максимальная длина заголовка 72 символа
+    // Максимальная длина заголовка
     "header-max-length": [2, "always", cz.subjectLimit],
 
     // Описание не может быть пустым
