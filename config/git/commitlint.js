@@ -17,13 +17,10 @@ module.exports = {
     "body-leading-blank": [2, "always"],
 
     // Тело не может быть пустым
-    "body-min-length": [2, "never", 10],
+    "body-empty": [2, "never"],
 
     // Максимальная длина тела
     "body-max-length": [2, "always", cz.subjectLimit],
-
-    // Тело всегда только в нижнем регистре
-    // "body-case": [2, "always", "lower-case"],
 
     // Тип всегда только в нижнем регистре
     "type-case": [2, "always", "lower-case"],
