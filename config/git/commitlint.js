@@ -4,11 +4,23 @@ const cz = require("./commitizen.js");
 
 module.exports = {
   rules: {
+    // Заголовок всегда только в нижнем регистре
+    "header-case": [2, "always", "lower-case"],
+
     // Максимальная длина заголовка
     "header-max-length": [2, "always", cz.subjectLimit],
 
     // Описание не может быть пустым
     "subject-empty": [2, "never"],
+
+    // Тело не может быть пустым
+    "body-empty": [2, "never"],
+
+    // Максимальная длина тела
+    "body-max-length": [2, "always", cz.subjectLimit],
+
+    // Тело всегда только в нижнем регистре
+    "body-case": [2, "always", "lower-case"],
 
     // Тип всегда только в нижнем регистре
     "type-case": [2, "always", "lower-case"],
@@ -36,5 +48,11 @@ module.exports = {
 
     // Перечислим все возможные варианты коммитов
     "type-enum": [2, "always", ["build", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]],
+
+    // Нижний колонтитул не может быть пустым
+    "footer-empty": [2, "never"],
+
+    // Максимальная длина нижнего колонтитула
+    "footer-max-length": [2, "always", cz.subjectLimit],
   },
 };
