@@ -2,8 +2,8 @@
 
 module.exports = {
   types: [
-    { value: "feat", name: "feat:     A new feature" },
-    { value: "bugfix", name: "bugfix:      A bug fix" },
+    { value: "feature", name: "feature:  A new feature" },
+    { value: "bugfix", name: "bugfix:   A bug fix" },
     { value: "docs", name: "docs:     Documentation only changes" },
     {
       value: "style",
@@ -22,8 +22,8 @@ module.exports = {
       value: "build",
       name: "build:    Changes to the build process or auxiliary tools\n            and libraries such as documentation generation",
     },
-    { value: "revert", name: "revert:   Revert to a commit" },
-    { value: "CI", name: "CI:       Continuous integration/continuous delivery or continuous deployment" },
+    { value: "config", name: "config:   Changing the configuration, configuring linters and etc" },
+    { value: "ci", name: "ci:       Continuous integration/continuous delivery\n            or continuous deployment" },
   ],
 
   scopes: [],

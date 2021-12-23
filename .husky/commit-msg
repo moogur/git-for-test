@@ -45,7 +45,7 @@ function checkLowercase() {
 # - include type
 function includeInTypes() {
   local VALUE="$1"
-  local STRING_TYPES=("feat" "bugfix" "docs" "style" "refactor" "perf" "test" "build" "revert" "ci")
+  local STRING_TYPES=("feature" "bugfix" "docs" "style" "refactor" "perf" "test" "build" "revert" "ci")
 
   for i in "${STRING_TYPES[@]}"
   do
