@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# replace commit message
+BRANCH_NAME=$(git branch | grep '^\*' | cut -b3-)
+OLD_MESSAGE=`cat "$1"`
+CHUNKS=($(echo "$OLD_MESSAGE" | tr ": " "\n"))
+NEW_MESSAGE="${CHUNKS[0]}: "
+BODY="\n${CHUNKS[1]}\n\nBREAKING CHANGE:\nmetadata:"
+
+if [[ "$BRANCH_NAME" = *"-"* ]]; then
+  HEADER=($(echo "$BRANCH_NAME" | tr "_" "\n"))
+  HEAD_BRANCH_NAME=$(echo "${HEADER[0]//[a-z\/]/}")
+  NEW_MESSAGE=$NEW_MESSAGE"${HEADER[@]:1}\n$BODY https://moogur.atlassian.net/browse/$HEAD_BRANCH_NAME"
+else
+  NEW_MESSAGE=$NEW_MESSAGE"$BRANCH_NAME\n$BODY $BRANCH_NAME"
+fi
+
+echo -e "$NEW_MESSAGE" > "$1"

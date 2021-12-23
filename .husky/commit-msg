@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# check commit message
+# - not empty
+function checkEmpty() {
+  local TYPE="$1"
+  local VALUE="$2"
+
+  if [[ -z "$VALUE" ]]
+  then
+    echo "$TYPE is empty"
+    exit 1
+  fi
+}
+
+# - max length
+function checkMaxLength() {
+  local TYPE="$1"
+  local MAX_LENGTH="$2"
+  local VALUE="$3"
+
+  if [[ "${#VALUE}" > "$MAX_LENGTH" ]]
+  then
+    echo "$TYPE is longer than the maximum length"
+    exit 1
+  fi
+}
+
+# - is lower case
+function checkLowercase() {
+  local TYPE="$1"
+  local VALUE="$2"
+  local VALUE_TO_LOWER_CASE="${VALUE,,}"
+
+    if [[ "$VALUE_TO_LOWER_CASE" != "$VALUE" ]]
+  then
+    echo "$TYPE is not lower case"
+    exit 1
+  fi
+}
+
+MESSAGE=`cat "$1"`
+echo "$MESSAGE"
+
+HEADER=""
+TYPE=""
+SCOPE=""
+SUBJECT=""
+BODY=""
+FOOTER=""
