@@ -20,7 +20,7 @@ on:
   status: {}
 
 jobs:
-  automerge:
+  auto-merge:
     runs-on: ubuntu-latest
     steps:
       - name: "Automerge PR"
