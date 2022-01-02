@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: zwaldowski/match-label-action@v2
         with:
-          allowed: approved,
+          allowed_multiple: approved,
             type:feature,
             type:style,
             type:test,
