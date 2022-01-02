@@ -5,12 +5,12 @@ BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 OLD_MESSAGE=`cat "$1"`
 CHUNKS=($(echo "$OLD_MESSAGE" | tr ": " "\n"))
 NEW_MESSAGE="${CHUNKS[0]}: "
-BODY="\n${CHUNKS[1]}\n\nmetadata:"
+BODY="\n*${CHUNKS[1]}*\n\n**metadata:**"
 
 if [[ "$BRANCH_NAME" == *"-"* ]]; then
   HEADER=($(echo "$BRANCH_NAME" | tr "_" "\n"))
   HEAD_BRANCH_NAME=$(echo "${HEADER[0]//[a-z\/]/}")
-  NEW_MESSAGE=$NEW_MESSAGE"${HEADER[@]:1}\n$BODY https://moogur.atlassian.net/browse/$HEAD_BRANCH_NAME"
+  NEW_MESSAGE=$NEW_MESSAGE"${HEADER[@]:1}\n$BODY [$HEAD_BRANCH_NAME](https://jira.moogur.su/browse/$HEAD_BRANCH_NAME)"
 else
   NEW_MESSAGE=$NEW_MESSAGE"$BRANCH_NAME\n$BODY $BRANCH_NAME"
 fi
