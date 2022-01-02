@@ -1,6 +1,0 @@
-addAssignees: author
-numberOfAssignees: 1
-
-skipKeywords:
-  - wip
-  - draft
