@@ -2,6 +2,8 @@ name: Build & Test
 
 on:
   push:
+    tags:
+      - "v*"
   pull_request:
     types: [opened, labeled, unlabeled, synchronize]
 
