@@ -1,0 +1,13 @@
+addReviewers: true
+numberOfReviewers: 1
+reviewers:
+  - moogur
+
+addAssignees: true
+assignees:
+  - moogur
+numberOfAssignees: 1
+
+skipKeywords:
+  - wip
+  - draft
