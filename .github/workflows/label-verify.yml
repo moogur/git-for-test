@@ -10,14 +10,14 @@ jobs:
     steps:
       - uses: zwaldowski/match-label-action@v2
         with:
-          allowed: approved
-            type:feature
-            type:style
-            type:test
-            type:bugfix
-            type:docs
-            type:refactor
-            type:perf
-            type:config
-            type:build
-            type:ci
+          allowed: approved,
+            type:feature,
+            type:style,
+            type:test,
+            type:bugfix,
+            type:docs,
+            type:refactor,
+            type:perf,
+            type:config,
+            type:build,
+            type:ci,
