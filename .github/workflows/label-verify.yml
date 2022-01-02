@@ -20,4 +20,4 @@ jobs:
             type:perf,
             type:config,
             type:build,
-            type:ci,
+            type:ci
