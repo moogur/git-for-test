@@ -1,12 +1,5 @@
-addReviewers: author
-numberOfReviewers: 0
-reviewers:
-  - moogur
-
 addAssignees: author
-numberOfAssignees: 0
-assignees:
-  - moogur
+numberOfAssignees: 1
 
 skipKeywords:
   - wip
