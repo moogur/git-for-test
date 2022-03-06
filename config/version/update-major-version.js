@@ -1,6 +1,6 @@
 import * as fs from "fs";
 
-async function updateMajorVersion() {
+async function updateMajorVersion2() {
   try {
     const version = JSON.parse(fs.readFileSync("./config/version/version.json", "utf8"));
     version.major += 1;
@@ -11,4 +11,4 @@ async function updateMajorVersion() {
   }
 }
 
-updateMajorVersion();
+updateMajorVersion2();
