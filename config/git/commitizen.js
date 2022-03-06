@@ -1,4 +1,12 @@
-"use strict";
+import shell from "shelljs";
+
+if (!shell.which("git")) {
+  shell.echo("This script requires git");
+  shell.exit(1);
+}
+
+const taskNumber = shell.exec("git rev-parse --abbrev-ref HEAD").match("[A-Z]+-[0-9]+");
+console.log("taskNumber", taskNumber);
 
 module.exports = {
   types: [
@@ -37,6 +45,9 @@ module.exports = {
 
   // limit subject length
   subjectLimit: 200,
+
+  // footer
+  // footerPrefix: "metadata: https://youtrack.moogur.su/issue/$HEAD_BRANCH_NAME",
 
   // Вопросы которые не надо задавать
   skipQuestions: ["body", "footer", "breaking"],

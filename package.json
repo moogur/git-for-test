@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "private": true,
+  "type": "module",
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "update-major-version": "node ./config/version/update-major-version"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,7 @@
   "homepage": "https://github.com/Moogur/git-for-test#readme",
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-customizable"
+      "path": "./node_modules/cz-customizable"
     },
     "cz-customizable": {
       "config": "./config/git/commitizen.js"
@@ -28,6 +30,7 @@
   },
   "devDependencies": {
     "cz-customizable": "^6.3.0",
-    "husky": "^7.0.4"
+    "husky": "^7.0.4",
+    "shelljs": "^0.8.5"
   }
 }

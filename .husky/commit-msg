@@ -1,90 +1,90 @@
-#!/bin/bash
+# #!/bin/bash
 
-# check commit message
-# - not empty
-function checkEmpty() {
-  local TYPE="$1"
-  local VALUE="$2"
+# # check commit message
+# # - not empty
+# function checkEmpty() {
+#   local TYPE="$1"
+#   local VALUE="$2"
 
-  if [[ -z "$VALUE" ]]
-  then
-    echo "$TYPE is empty"
-    echo "value = $VALUE"
-    exit 1
-  fi
-}
+#   if [[ -z "$VALUE" ]]
+#   then
+#     echo "$TYPE is empty"
+#     echo "value = $VALUE"
+#     exit 1
+#   fi
+# }
 
-# - max length
-function checkMaxLength() {
-  local TYPE="$1"
-  local MAX_LENGTH="$2"
-  local VALUE="$3"
+# # - max length
+# function checkMaxLength() {
+#   local TYPE="$1"
+#   local MAX_LENGTH="$2"
+#   local VALUE="$3"
 
-  if [[ "${#VALUE}" -gt "$MAX_LENGTH" ]]
-  then
-    echo "$TYPE is longer than the maximum length"
-    echo "value = $VALUE"
-    exit 1
-  fi
-}
+#   if [[ "${#VALUE}" -gt "$MAX_LENGTH" ]]
+#   then
+#     echo "$TYPE is longer than the maximum length"
+#     echo "value = $VALUE"
+#     exit 1
+#   fi
+# }
 
-# - is lower case
-function checkLowercase() {
-  local TYPE="$1"
-  local VALUE="$2"
-  local VALUE_TO_LOWER_CASE=$(echo "$VALUE" | tr '[:upper:]' '[:lower:]')
+# # - is lower case
+# function checkLowercase() {
+#   local TYPE="$1"
+#   local VALUE="$2"
+#   local VALUE_TO_LOWER_CASE=$(echo "$VALUE" | tr '[:upper:]' '[:lower:]')
 
-  if [[ "$VALUE_TO_LOWER_CASE" != "$VALUE" ]]
-  then
-    echo "$TYPE is not lower case"
-    echo "value = $VALUE"
-    exit 1
-  fi
-}
+#   if [[ "$VALUE_TO_LOWER_CASE" != "$VALUE" ]]
+#   then
+#     echo "$TYPE is not lower case"
+#     echo "value = $VALUE"
+#     exit 1
+#   fi
+# }
 
-# - include type
-function includeInTypes() {
-  local VALUE="$1"
-  local STRING_TYPES=("feature" "bugfix" "docs" "style" "refactor" "perf" "test" "build" "revert" "ci")
+# # - include type
+# function includeInTypes() {
+#   local VALUE="$1"
+#   local STRING_TYPES=("feature" "bugfix" "docs" "style" "refactor" "perf" "test" "build" "revert" "ci")
 
-  for i in "${STRING_TYPES[@]}"
-  do
-      if [[ "$i" == "$VALUE" ]]
-      then
-          return
-      fi
-  done
+#   for i in "${STRING_TYPES[@]}"
+#   do
+#       if [[ "$i" == "$VALUE" ]]
+#       then
+#           return
+#       fi
+#   done
 
-  echo "Unknown type"
-  echo "value = $VALUE"
-  exit 1
-}
+#   echo "Unknown type"
+#   echo "value = $VALUE"
+#   exit 1
+# }
 
-# variables
-OLD_IFS=$IFS
-IFS=$'\n\n'
-CHUNKS_MESSAGE=( $(cat "$1") )
-IFS=$OLD_IFS
+# # variables
+# OLD_IFS=$IFS
+# IFS=$'\n\n'
+# CHUNKS_MESSAGE=( $(cat "$1") )
+# IFS=$OLD_IFS
 
-HEADER="${CHUNKS_MESSAGE[0]}"
-HEADER_CHUNKS=( $(echo "$HEADER" | tr "(" "\n" | tr "): " "\n") )
-BODY="${CHUNKS_MESSAGE[1]}"
+# HEADER="${CHUNKS_MESSAGE[0]}"
+# HEADER_CHUNKS=( $(echo "$HEADER" | tr "(" "\n" | tr "): " "\n") )
+# BODY="${CHUNKS_MESSAGE[1]}"
 
-# checking
-# TYPE
-checkEmpty "TYPE" "${HEADER_CHUNKS[0]}"
-includeInTypes "${HEADER_CHUNKS[0]}"
+# # checking
+# # TYPE
+# checkEmpty "TYPE" "${HEADER_CHUNKS[0]}"
+# includeInTypes "${HEADER_CHUNKS[0]}"
 
-# SCOPE
-checkEmpty "SCOPE" "${HEADER_CHUNKS[1]}"
-checkLowercase "SCOPE" "${HEADER_CHUNKS[1]}"
+# # SCOPE
+# checkEmpty "SCOPE" "${HEADER_CHUNKS[1]}"
+# checkLowercase "SCOPE" "${HEADER_CHUNKS[1]}"
 
-# SUBJECT
-checkEmpty "SUBJECT" "${HEADER_CHUNKS[2]}"
-checkLowercase "SUBJECT" "$HEADER"
-checkMaxLength "SUBJECT" 75 "${HEADER_CHUNKS[2]}"
+# # SUBJECT
+# checkEmpty "SUBJECT" "${HEADER_CHUNKS[2]}"
+# checkLowercase "SUBJECT" "$HEADER"
+# checkMaxLength "SUBJECT" 75 "${HEADER_CHUNKS[2]}"
 
-# BODY
-checkEmpty "BODY" "$BODY"
-checkMaxLength "BODY" 200 "$BODY"
-checkLowercase "BODY" "$BODY"
+# # BODY
+# checkEmpty "BODY" "$BODY"
+# checkMaxLength "BODY" 200 "$BODY"
+# checkLowercase "BODY" "$BODY"

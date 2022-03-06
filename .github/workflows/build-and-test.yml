@@ -2,10 +2,10 @@ name: Build & Test
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - master
   pull_request:
-    types: [opened, labeled, unlabeled, synchronize]
+    types: [opened, labeled, synchronize]
 
 jobs:
   build-and-test-job:
