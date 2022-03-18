@@ -27,9 +27,9 @@ jobs:
         uses: "pascalgn/automerge-action@v0.14.3"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_METHOD: "squash"
+          MERGE_METHOD: "merge"
           MERGE_METHOD_LABEL_REQUIRED: true
-          MERGE_LABELS: "approved"
+          MERGE_LABELS: "approved,!work in progress"
           MERGE_REMOVE_LABELS: "approved"
           MERGE_COMMIT_MESSAGE: "pull-request-title"
           MERGE_RETRIES: "6"
