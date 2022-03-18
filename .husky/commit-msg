@@ -6,15 +6,12 @@ function checkEmpty() {
   local VALUE=$1
   local SPLIT_VALUE=($(echo "$VALUE" | tr "] " "\n"))
 
-  if [[ -z "${SPLIT_VALUE[0]:1}" ]]
+  if [[ "${SPLIT_VALUE[0]:0:1}" != "[" || -z "${SPLIT_VALUE[0]:1}" ]]
   then
     echo "Prefix is empty"
     echo "value = $VALUE"
     exit 1
   fi
-
-  echo "${SPLIT_VALUE[0]:1}"
-  exit 1
 
   if [[ -z "${SPLIT_VALUE[1]}" ]]
   then
