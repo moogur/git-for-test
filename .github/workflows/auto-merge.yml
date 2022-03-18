@@ -3,7 +3,7 @@ name: "Auto merge of approved pull requests with passed checks"
 on:
   label:
     types:
-      - edited
+      - created
   pull_request_review:
     types:
       - submitted
