@@ -3,17 +3,20 @@
 # check commit message
 # - not empty
 function checkEmpty() {
-  local VALUE=$(echo "$1" | tr "] " "\n")
+  local VALUE=$1
+  local SPLIT_VALUE=($(echo "$VALUE" | tr "] " "\n"))
 
-  if [[ "${#VALUE[0]}" -lt 2 ]]
+  if [[ -z "${SPLIT_VALUE[0]:1}" ]]
   then
     echo "Prefix is empty"
     echo "value = $VALUE"
     exit 1
   fi
 
-  echo ${VALUE[#]}
-  if [[ -z "${VALUE[1]}" ]]
+  echo "${SPLIT_VALUE[0]:1}"
+  exit 1
+
+  if [[ -z "${SPLIT_VALUE[1]}" ]]
   then
     echo "Commit message is empty"
     echo "value = $VALUE"
