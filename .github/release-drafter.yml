@@ -1,12 +1,13 @@
-template: |
-  ## What’s Changed
-  $CHANGES
-
-change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
-version-template: "$MAJOR.$MINOR.$PATCH"
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
-change-title-escapes: '\<*_&'
+template: |
+  # What's Changed
+
+  $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+
+change-template: "- $TITLE (#$NUMBER) @$AUTHOR"
 
 categories:
   - title: "🚀 New Features"
@@ -38,21 +39,17 @@ categories:
 version-resolver:
   major:
     labels:
-      - "major"
   minor:
     labels:
-      - "minor"
       - "type:feature"
       - "type:style"
       - "type:docs"
       - "type:perf"
   patch:
     labels:
-      - "patch"
       - "type:bugfix"
       - "type:build"
       - "type:ci"
       - "type:refactor"
       - "type:test"
       - "type:config"
-  default: patch
