@@ -1,12 +1,11 @@
 name: Create release drafter
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
 
 jobs:
   update-release-draft:
+    if: ${{ github.actor != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@master
