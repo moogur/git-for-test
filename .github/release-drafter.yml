@@ -9,7 +9,6 @@ template: |
 
 change-template: "- $TITLE (#$NUMBER) @$AUTHOR"
 change-title-escapes: '\<*_&'
-version-template: "$MAJOR.$MINOR.$PATCH"
 
 categories:
   - title: "🚀 New Features"
