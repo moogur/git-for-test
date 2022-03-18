@@ -2,17 +2,43 @@ name: Build & Test
 
 on:
   push:
-    tags:
-      - "v*"
-  pull_request:
-    types: [opened, labeled, unlabeled, synchronize]
+    branches:
+      - *
 
 jobs:
-  build-and-test-job:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version: [16.13.0]
+        node_version: 16.x
+
+    steps:
+      - name: "checkout"
+        uses: actions/checkout@v2
+
+      - name: "setup node"
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: "Cache node modules"
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: "install"
+        run: npm ci
+
+      # - name: "test"
+      #   run: npm run test
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: 16.x
 
     steps:
       - name: "checkout"
@@ -35,6 +61,3 @@ jobs:
 
       # - name: "build"
       #   run: npm run build
-
-      # - name: "test"
-      #   run: npm run test

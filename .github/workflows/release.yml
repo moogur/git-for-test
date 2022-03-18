@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "checkout"
+        uses: actions/checkout@v3
+
+      - name: "version"
+        id: version
+        run: |
+          tag=${GITHUB_REF/refs\/tags\//}
+          version=${tag#v}
+          major=${version%%.*}
+          echo "::set-output name=TAG::${tag}"
+          echo "::set-output name=VERSION::${version}"
+          echo "::set-output name=MAJOR::${major}"
+      - uses: release-drafter/release-drafter@master
+        with:
+          version: ${{ steps.version.outputs.VERSION }}
+          publish: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
