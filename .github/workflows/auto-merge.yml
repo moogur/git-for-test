@@ -1,9 +1,9 @@
 name: "Auto merge of approved pull requests with passed checks"
 
 on:
-  label:
+  pull_request:
     types:
-      - created
+      - labeled
   pull_request_review:
     types:
       - submitted
