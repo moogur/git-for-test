@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    types: [closed]
 
 jobs:
   update-release-draft:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
       - uses: release-drafter/release-drafter@master
         env:
