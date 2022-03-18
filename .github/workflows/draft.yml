@@ -2,7 +2,8 @@ name: Create release drafter
 
 on:
   pull_request:
-    types: [closed]
+    types:
+      - closed
 
 jobs:
   update-release-draft:
