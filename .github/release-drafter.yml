@@ -39,6 +39,7 @@ categories:
 version-resolver:
   major:
     labels:
+      - "type:major"
   minor:
     labels:
       - "type:feature"
