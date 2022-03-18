@@ -28,7 +28,6 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_METHOD: "squash"
-          MERGE_METHOD_LABEL_REQUIRED: true
           MERGE_LABELS: "approved,!work in progress"
           MERGE_REMOVE_LABELS: "approved"
           MERGE_COMMIT_MESSAGE: "automatic"
