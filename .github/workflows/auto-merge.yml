@@ -17,14 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Automerge PR"
-        uses: "pascalgn/automerge-action@v0.14.3"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_METHOD: "merge"
-          MERGE_LABELS: "approved,!work in progress"
-          MERGE_REMOVE_LABELS: "approved"
-          MERGE_COMMIT_MESSAGE: "pull-request-title"
-          MERGE_RETRIES: "6"
-          MERGE_RETRY_SLEEP: "10000"
-          UPDATE_LABELS: "disable"
-          MERGE_DELETE_BRANCH: true
+        uses: "KeisukeYamashita/auto-pull-request-merge@v1"
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          labels: "approved"
+          strategy: "aquash"
