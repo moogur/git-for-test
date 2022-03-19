@@ -4,10 +4,7 @@ on:
   push:
     branches:
       - "**"
-  workflow_run:
-    workflows: ["Auto merge of approved pull requests with passed checks"]
-    types:
-      - completed
+  workflow_dispatch:
 
 jobs:
   test:
@@ -51,7 +48,7 @@ jobs:
       - name: "echo"
         id: echo
         run: |
-          echo "$(git rev-parse --abbrev-ref HEAD)"
+          echo ${{ github.event }}
 
       - name: "setup node"
         uses: actions/setup-node@v2
