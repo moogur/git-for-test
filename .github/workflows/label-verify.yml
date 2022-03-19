@@ -2,7 +2,12 @@ name: Verify labels in PR
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, labeled]
+    types:
+      - labeled
+      - unlabeled
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   label-verify:
