@@ -27,8 +27,20 @@ jobs:
           UPDATE_LABELS: "disable"
           MERGE_DELETE_BRANCH: true
 
-      - name: "Invoke workflow"
+  test-workflow:
+    needs: auto-merge
+    steps:
+      - name: "Invoke workflow - Build & Test"
         uses: "benc-uk/workflow-dispatch@v1"
         with:
-          workflow: My Workflow
+          workflow: "Build & Test"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  release-draft-workflow:
+    needs: auto-merge
+    steps:
+      - name: "Invoke workflow - Create release drafter"
+        uses: "benc-uk/workflow-dispatch@v1"
+        with:
+          workflow: "Create release drafter"
           token: ${{ secrets.GITHUB_TOKEN }}
