@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    types:
+      - closed
 
 jobs:
   update-release-draft:
+    if: github.event.name == 'push' || (github.event.name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@master
