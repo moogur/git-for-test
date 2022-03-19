@@ -27,10 +27,6 @@ jobs:
           UPDATE_LABELS: "disable"
           MERGE_DELETE_BRANCH: true
 
-  run-another-workflows:
-    needs: auto-merge
-    runs-on: ubuntu-latest
-    steps:
       - name: "checkout"
         uses: actions/checkout@v3
         with:
