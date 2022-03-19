@@ -4,10 +4,7 @@ on:
   push:
     branches:
       - master
-  workflow_run:
-    workflows: ["Auto merge of approved pull requests with passed checks"]
-    types:
-      - completed
+  workflow_dispatch:
 
 jobs:
   update-release-draft:
