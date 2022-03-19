@@ -35,8 +35,11 @@ function checkMaxLength() {
 }
 
 # variables
-CHUNKS_MESSAGE=$(cat "$1")
+MESSAGE=$(cat "$1")
+
+
+if [[ "${MESSAGE:0:1}" == "v" ]]; then exit; fi
 
 # checking
-checkEmpty "$CHUNKS_MESSAGE"
-checkMaxLength 72 "$CHUNKS_MESSAGE"
+checkEmpty "$MESSAGE"
+checkMaxLength 72 "$MESSAGE"
