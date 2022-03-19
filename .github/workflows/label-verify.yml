@@ -23,14 +23,3 @@ jobs:
             type:config,
             type:build,
             type:ci
-
-  run-another-workflows:
-    needs: label-verify
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Run another workflows"
-        uses: "peter-evans/repository-dispatch@v1"
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          event-type: auto_merge_pr
-          repository: ${{ github.repository }}
