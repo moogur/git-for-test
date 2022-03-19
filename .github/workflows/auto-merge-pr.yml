@@ -29,6 +29,7 @@ jobs:
 
   test-workflow:
     needs: auto-merge
+    runs-on: ubuntu-latest
     steps:
       - name: "Invoke workflow - Build & Test"
         uses: "benc-uk/workflow-dispatch@v1"
@@ -38,6 +39,7 @@ jobs:
 
   release-draft-workflow:
     needs: auto-merge
+    runs-on: ubuntu-latest
     steps:
       - name: "Invoke workflow - Create release drafter"
         uses: "benc-uk/workflow-dispatch@v1"
