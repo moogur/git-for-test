@@ -27,22 +27,13 @@ jobs:
           UPDATE_LABELS: "disable"
           MERGE_DELETE_BRANCH: true
 
-  test-workflow:
+  run-another-workflows:
     needs: auto-merge
     runs-on: ubuntu-latest
     steps:
-      - name: "Invoke workflow - Build & Test"
-        uses: "mvasigh/dispatch-action@main"
+      - name: "Run another workflows"
+        uses: "peter-evans/repository-dispatch@v1"
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          event_type: auto_merge_pr
-
-  release-draft-workflow:
-    needs: auto-merge
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Invoke workflow - Create release drafter"
-        uses: "mvasigh/dispatch-action@main"
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          event_type: auto_merge_pr
+          event-type: auto_merge_pr
+          repository: ${{ github.repository }}

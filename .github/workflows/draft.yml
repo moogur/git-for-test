@@ -5,7 +5,8 @@ on:
     branches:
       - master
   repository_dispatch:
-    types: [auto_merge_pr]
+    types:
+      - auto_merge_pr
 
 jobs:
   update-release-draft:
