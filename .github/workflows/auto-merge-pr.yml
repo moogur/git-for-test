@@ -32,9 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Invoke workflow - Build & Test"
-        uses: "benc-uk/workflow-dispatch@v1"
+        uses: "GeekEast/trigger-open-pr-workflow@1.0.2"
         with:
-          workflow: "Build & Test"
+          workflow_filename: "build-and-test.yml"
           token: ${{ secrets.GITHUB_TOKEN }}
 
   release-draft-workflow:
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Invoke workflow - Create release drafter"
-        uses: "benc-uk/workflow-dispatch@v1"
+        uses: "GeekEast/trigger-open-pr-workflow@1.0.2"
         with:
-          workflow: "Create release drafter"
+          workflow_filename: "draft.yml"
           token: ${{ secrets.GITHUB_TOKEN }}
