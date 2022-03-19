@@ -51,7 +51,7 @@ jobs:
       - name: "echo"
         id: echo
         run: |
-          echo "$(git rev-parse --abbrev-ref HEAD)"
+          echo ${{ github.event }}
 
       - name: "setup node"
         uses: actions/setup-node@v2
