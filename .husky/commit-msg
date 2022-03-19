@@ -37,9 +37,6 @@ function checkMaxLength() {
 # variables
 MESSAGE=$(cat "$1")
 
-
-if [[ "${MESSAGE:0:1}" == "v" ]]; then exit; fi
-
 # checking
 checkEmpty "$MESSAGE"
 checkMaxLength 72 "$MESSAGE"
