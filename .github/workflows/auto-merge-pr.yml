@@ -32,17 +32,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Invoke workflow - Build & Test"
-        uses: "GeekEast/trigger-open-pr-workflow@1.0.2"
+        uses: "mvasigh/dispatch-action@main"
         with:
-          workflow_filename: "build-and-test.yml"
           token: ${{ secrets.GITHUB_TOKEN }}
+          event_type: auto_merge_pr
 
   release-draft-workflow:
     needs: auto-merge
     runs-on: ubuntu-latest
     steps:
       - name: "Invoke workflow - Create release drafter"
-        uses: "GeekEast/trigger-open-pr-workflow@1.0.2"
+        uses: "mvasigh/dispatch-action@main"
         with:
-          workflow_filename: "draft.yml"
           token: ${{ secrets.GITHUB_TOKEN }}
+          event_type: auto_merge_pr
