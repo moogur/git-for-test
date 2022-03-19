@@ -4,12 +4,15 @@ on:
   push:
     branches:
       - master
-  repository_dispatch:
+  workflow_run:
+    workflows:
+      - "Auto merge of approved pull requests with passed checks"
     types:
-      - auto_merge_pr
+      - completed
 
 jobs:
   update-release-draft:
+    if: ${{ github.event.push.branch == 'master' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@master
