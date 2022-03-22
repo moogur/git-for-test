@@ -28,6 +28,8 @@ jobs:
           MERGE_DELETE_BRANCH: true
 
       - name: "Run another workflows"
-        run: |
-          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -d '{"event_type": "auto_merge_pr"}' \
-          https://api.github.com/repos/${{ github.repository }}/dispatches
+        uses: "peter-evans/repository-dispatch@v1"
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: auto_merge_pr
+          repository: ${{ github.repository }}
