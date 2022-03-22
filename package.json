@@ -9,8 +9,7 @@
     "node": ">=14 <15"
   },
   "scripts": {
-    "prepare": "husky install",
-    "update-major-version": "node ./config/version/update-major-version"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
