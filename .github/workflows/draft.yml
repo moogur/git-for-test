@@ -8,6 +8,7 @@ on:
 
 jobs:
   update-release-draft:
+    if: github.event_name == 'push' || github.event_name == 'repository_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@master
