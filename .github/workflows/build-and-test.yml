@@ -5,7 +5,6 @@ on:
     branches:
       - "**"
   repository_dispatch:
-    types: [auto_merge_pr]
 
 jobs:
   test:

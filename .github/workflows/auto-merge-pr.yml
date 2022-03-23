@@ -27,9 +27,14 @@ jobs:
           UPDATE_LABELS: "disable"
           MERGE_DELETE_BRANCH: true
 
-      - name: "Run another workflows"
-        uses: "peter-evans/repository-dispatch@v1"
+      - name: "Run draft workflow"
+        uses: ./
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          event-type: auto_merge_pr
-          repository: ${{ github.repository }}
+          workflow: Create release drafter
+
+      - name: "Run build and test workflow"
+        uses: ./
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: Build & Test

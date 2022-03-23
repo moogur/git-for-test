@@ -5,11 +5,9 @@ on:
     branches:
       - master
   repository_dispatch:
-    types: [auto_merge_pr]
 
 jobs:
   update-release-draft:
-    if: github.event_name == 'push' || github.event_name == 'repository_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@master
