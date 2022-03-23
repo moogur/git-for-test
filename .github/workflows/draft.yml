@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - master
-  repository_dispatch:
+  workflow_run:
+    workflows: [auto-merge]
+    types: [completed]
 
 jobs:
   update-release-draft:
-    if: github.event_name == 'push' || github.event_name == 'repository_dispatch'
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event == 'push' }}
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@master
