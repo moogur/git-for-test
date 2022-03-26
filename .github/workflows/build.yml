@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: "Set node version"
+        id: set-matrix
         run: |
           node_version=$(jq '.engines.node' package.json)
           echo "::set-output name=matrix::{\"node_version\":${node_version}}"
