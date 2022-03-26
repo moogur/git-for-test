@@ -26,3 +26,15 @@ jobs:
           MERGE_RETRY_SLEEP: "10000"
           UPDATE_LABELS: "disable"
           MERGE_DELETE_BRANCH: true
+
+      - name: "Run draft workflow"
+        uses: ./draft.yml
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: Create release drafter
+
+      - name: "Run build and test workflow"
+        uses: ./build-and-test.yml
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: Build & Test
