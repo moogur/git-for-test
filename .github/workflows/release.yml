@@ -23,7 +23,7 @@ jobs:
           echo "::set-output name=MAJOR::${major}"
 
       - name: "Publish release"
-      - uses: release-drafter/release-drafter@master
+        uses: release-drafter/release-drafter@master
         with:
           version: ${{ steps.version.outputs.VERSION }}
           publish: true

@@ -11,12 +11,12 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
-  steps:
-    - name: "Set node version"
-      run: |
-        node_version=$(jq '.engines.node' package.json)
-        echo "::set-output name=matrix::{\"node_version\":${node_version}}"
-        echo version node $node_version
+    steps:
+      - name: "Set node version"
+        run: |
+          node_version=$(jq '.engines.node' package.json)
+          echo "::set-output name=matrix::{\"node_version\":${node_version}}"
+          echo version node $node_version
 
   test:
     needs: set-node-version
