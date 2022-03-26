@@ -27,6 +27,11 @@ jobs:
           UPDATE_LABELS: "disable"
           MERGE_DELETE_BRANCH: true
 
+      - name: "checkout"
+        uses: actions/checkout@v3
+        with:
+          ref: master
+
       - name: "Run draft workflow"
         uses: ./draft.yml
         with:
