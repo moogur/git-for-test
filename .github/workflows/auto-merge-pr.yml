@@ -27,11 +27,12 @@ jobs:
           UPDATE_LABELS: "disable"
           MERGE_DELETE_BRANCH: true
 
-      - name: "checkout"
+      - name: "Checkout"
         uses: actions/checkout@v3
         with:
           ref: master
 
+      - name: "Create release drafter"
       - uses: release-drafter/release-drafter@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
