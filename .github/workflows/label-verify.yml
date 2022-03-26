@@ -12,8 +12,7 @@ jobs:
     steps:
       - uses: zwaldowski/match-label-action@v2
         with:
-          allowed_multiple: approved,
-            type:feature,
+          allowed_multiple: type:feature,
             type:style,
             type:test,
             type:bugfix,
