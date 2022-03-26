@@ -12,26 +12,26 @@ change-title-escapes: '\<*_&'
 
 categories:
   - title: "🚀 New Features"
-    collapse-after: 3
+    collapse-after: 5
     labels:
       - "type:feature"
       - "type:style"
       - "type:test"
   - title: "🐞 Bugs Fixes"
-    collapse-after: 3
+    collapse-after: 5
     labels:
       - "type:bugfix"
   - title: "📚 Documentation"
-    collapse-after: 3
+    collapse-after: 5
     labels:
       - "type:docs"
   - title: "🧰 Maintenance"
-    collapse-after: 3
+    collapse-after: 5
     labels:
       - "type:refactor"
       - "type:perf"
   - title: "🛠 Configuration"
-    collapse-after: 3
+    collapse-after: 5
     labels:
       - "type:config"
       - "type:build"
