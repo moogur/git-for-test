@@ -33,6 +33,6 @@ jobs:
           ref: master
 
       - name: "Create release drafter"
-      - uses: release-drafter/release-drafter@master
+        uses: release-drafter/release-drafter@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
