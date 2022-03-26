@@ -17,9 +17,9 @@ jobs:
 
       - name: "Set node version"
         run: |
-          echo $(ls -la)
           node_version=$(jq '.engines.node' package.json)
           echo "::set-output name=matrix::{\"node_version\":${node_version}}"
+          echo node_version $node_version
 
   test:
     needs: set-node-version
