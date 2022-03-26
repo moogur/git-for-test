@@ -24,7 +24,8 @@ jobs:
   build:
     needs: set-node-version
     runs-on: ubuntu-latest
-    strategy: ${{fromJson(needs.set-node-version.outputs.matrix)}}
+    strategy:
+      matrix: ${{fromJson(needs.set-node-version.outputs.matrix)}}
 
     steps:
       - name: "Checkout"
