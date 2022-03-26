@@ -12,6 +12,9 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
     steps:
+      - name: "Checkout"
+        uses: actions/checkout@v3
+
       - name: "Set node version"
         run: |
           node_version=$(jq '.engines.node' package.json)
