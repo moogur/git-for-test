@@ -1,15 +1,32 @@
 #!/usr/local/bin/bash
 
 # check commit message
+# - validate type
+function validateType() {
+  local VALUE=$1
+  local BRANCH_NAME=$2
+  local STRING_TYPES="featurebugfixdocsstylerefactorperftestbuildrevertci"
+
+  if [[ ! "$STRING_TYPES" == *"$VALUE"* ]]
+  then
+    echo "The branch name has an unknown type"
+    echo "type = $VALUE"
+    echo "branch = $BRANCH_NAME"
+    exit 1
+  fi
+}
+
 # - validate task number
 function validateTaskNumber() {
   local VALUE=$1
+  local BRANCH_NAME=$2
 
-  local REGEXP="^\[[A-Z]+-[0-9]+\]$"
+  local REGEXP="^[A-Z]+-[0-9]+$"
   if [[ ! "$VALUE" =~ $REGEXP ]]
   then
-    echo "The issue number is not specified correctly"
-    echo "value = $VALUE"
+    echo "The branch name has the wrong task name"
+    echo "task number = $VALUE"
+    echo "branch = $BRANCH_NAME"
     exit 1
   fi
 }
@@ -17,34 +34,25 @@ function validateTaskNumber() {
 # - not empty
 function checkEmptyBody() {
   local VALUE=$1
+  local BRANCH_NAME=$2
 
   if [[ -z "$VALUE" ]]
   then
-    echo "Commit message is empty"
-    echo "value = $VALUE"
-    exit 1
-  fi
-}
-
-# - max length
-function checkMaxLength() {
-  local MAX_LENGTH="$1"
-  local VALUE="$2"
-
-  if [[ "${#VALUE}" -gt "$MAX_LENGTH" ]]
-  then
-    echo "Commit message is longer than the maximum length"
-    echo "value = $VALUE"
+    echo "The branch name has an incorrect description"
+    echo "description = $VALUE"
+    echo "branch = $BRANCH_NAME"
     exit 1
   fi
 }
 
 # variables
-MESSAGE="$1"
-echo "$MESSAGE"
-exit 1
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+mapfile -t BRANCH_NAME_CHUNKS < <( echo "$BRANCH_NAME" | tr '/' '\n' | tr '_' '\n' )
+TAIL="${BRANCH_NAME_CHUNKS[*]:2}"
 
 # checking
-# validateTaskNumber "${MESSAGE_CHUNKS[0]}"
-# checkEmptyBody "$TAIL"
-# checkMaxLength 72 "$MESSAGE"
+validateType "${BRANCH_NAME_CHUNKS[0]}" "$BRANCH_NAME"
+validateTaskNumber "${BRANCH_NAME_CHUNKS[1]}" "$BRANCH_NAME"
+checkEmptyBody "$TAIL" "$BRANCH_NAME"
+
+exit 1
