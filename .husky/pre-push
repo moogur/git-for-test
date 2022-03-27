@@ -54,5 +54,3 @@ TAIL="${BRANCH_NAME_CHUNKS[*]:2}"
 validateType "${BRANCH_NAME_CHUNKS[0]}" "$BRANCH_NAME"
 validateTaskNumber "${BRANCH_NAME_CHUNKS[1]}" "$BRANCH_NAME"
 checkEmptyBody "$TAIL" "$BRANCH_NAME"
-
-exit 1
