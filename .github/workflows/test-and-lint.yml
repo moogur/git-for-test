@@ -1,4 +1,4 @@
-name: Test
+name: Test and lint
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
           node_version=$(jq '.engines.node' package.json)
           echo "::set-output name=matrix::{\"node_version\":[${node_version:1:-1}]}"
 
-  test:
+  test-and-lint:
     needs: set-node-version
     runs-on: ubuntu-latest
     strategy:
@@ -45,6 +45,9 @@ jobs:
       - name: "Install"
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci --ignore-scripts
+
+      # - name: "Lint"
+      #   run: npm run lint
 
       # - name: "Test"
       #   run: npm run test
