@@ -40,11 +40,11 @@ function checkMaxLength() {
 }
 
 # variables
-MESSAGE=$(cat "$1")
-mapfile -t MESSAGE_CHUNKS < <( echo "$MESSAGE" | tr ' ' '\n' )
-TAIL="${MESSAGE_CHUNKS[*]:1}"
+MESSAGE="$1"
+echo "$MESSAGE"
+exit 1
 
 # checking
-validateTaskNumber "${MESSAGE_CHUNKS[0]}"
-checkEmptyBody "$TAIL"
-checkMaxLength 72 "$MESSAGE"
+# validateTaskNumber "${MESSAGE_CHUNKS[0]}"
+# checkEmptyBody "$TAIL"
+# checkMaxLength 72 "$MESSAGE"
