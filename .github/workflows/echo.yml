@@ -15,4 +15,4 @@ jobs:
       - name: "Echo"
         run: |
           ls -la .
-          ls -la ./git/refs/tags
+          ls -la ./.git/refs/tags
