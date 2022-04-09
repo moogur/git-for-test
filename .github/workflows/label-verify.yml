@@ -10,7 +10,7 @@ jobs:
   label-verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: zwaldowski/match-label-action@v2
+      - uses: zwaldowski/match-label-action@v3
         with:
           allowed_multiple: type:feature,
             type:style,

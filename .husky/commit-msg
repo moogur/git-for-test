@@ -1,50 +1,116 @@
 #!/usr/local/bin/bash
 
 # check commit message
-# - validate task number
+## master branch
+### - not empty
+function checkEmpty() {
+  local TYPE="$1"
+  local VALUE="$2"
+
+  if [[ -z "$VALUE" ]]
+  then
+    echo "$TYPE is empty"
+    echo "value = $VALUE"
+    exit 1
+  fi
+}
+
+### - is lower case
+function checkLowercase() {
+  local TYPE="$1"
+  local VALUE="$2"
+  local VALUE_TO_LOWER_CASE
+  VALUE_TO_LOWER_CASE=$(echo "$VALUE" | tr '[:upper:]' '[:lower:]')
+
+  if [[ "$VALUE_TO_LOWER_CASE" != "$VALUE" ]]; then
+    echo "$TYPE is not lower case"
+    echo "value = $VALUE"
+    exit 1
+  fi
+}
+
+### - include type
+function includeInTypes() {
+  local VALUE="$1"
+  local TYPES_ARRAY=(feature bugfix docs style refactor perf test build revert ci)
+
+  if [[ ! "${TYPES_ARRAY[*]}" =~ ${VALUE} ]]; then
+    echo "Unknown type"
+    echo "value = $VALUE"
+    exit 1
+  fi
+}
+
+## other branches
+### - validate task number
 function validateTaskNumber() {
   local VALUE=$1
 
   local REGEXP="^\[[A-Z]+-[0-9]+\]$"
-  if [[ ! "$VALUE" =~ $REGEXP ]]
-  then
+  if [[ ! "$VALUE" =~ $REGEXP ]]; then
     echo "The issue number is not specified correctly"
     echo "value = $VALUE"
     exit 1
   fi
 }
 
-# - not empty
+### - not empty
 function checkEmptyBody() {
   local VALUE=$1
 
-  if [[ -z "$VALUE" ]]
-  then
+  if [[ -z "$VALUE" ]]; then
     echo "Commit message is empty"
     echo "value = $VALUE"
     exit 1
   fi
 }
 
-# - max length
+### - max length
 function checkMaxLength() {
   local MAX_LENGTH="$1"
   local VALUE="$2"
+  local TYPE="$3"
 
-  if [[ "${#VALUE}" -gt "$MAX_LENGTH" ]]
-  then
-    echo "Commit message is longer than the maximum length"
+  if [[ "${#VALUE}" -gt "$MAX_LENGTH" ]]; then
+
+    if [[ -z "$VALUE" ]]; then
+      echo "Commit message is longer than the maximum length"
+    else
+      echo "$TYPE is longer than the maximum length"
+    fi
+
     echo "value = $VALUE"
     exit 1
   fi
 }
 
-# variables
 MESSAGE=$(cat "$1")
-mapfile -t MESSAGE_CHUNKS < <( echo "$MESSAGE" | tr ' ' '\n' )
-TAIL="${MESSAGE_CHUNKS[*]:1}"
+BRANCH_NAME=$(git branch --show-current)
 
-# checking
-validateTaskNumber "${MESSAGE_CHUNKS[0]}"
-checkEmptyBody "$TAIL"
-checkMaxLength 72 "$MESSAGE"
+if [[ "$BRANCH_NAME" == "master" ]]; then
+  ### variables
+  mapfile -t HEADER_CHUNKS < <( echo "$MESSAGE" | tr "(" "\n" | tr "): " "\n" )
+  TAIL="${HEADER_CHUNKS[*]:2}"
+
+  ### check TYPE
+  checkEmpty "TYPE" "${HEADER_CHUNKS[0]}"
+  includeInTypes "${HEADER_CHUNKS[0]}"
+
+  ### check SCOPE
+  checkEmpty "SCOPE" "${HEADER_CHUNKS[1]}"
+  checkLowercase "SCOPE" "${HEADER_CHUNKS[1]}"
+
+  ### check SUBJECT
+  checkEmpty "SUBJECT" "$TAIL"
+  checkLowercase "SUBJECT" "$MESSAGE"
+  checkMaxLength 75 "$TAIL" "SUBJECT"
+else
+  ### variables
+  mapfile -t MESSAGE_CHUNKS < <( echo "$MESSAGE" | tr ' ' '\n' )
+  TAIL="${MESSAGE_CHUNKS[*]:1}"
+
+  ### checking
+  validateTaskNumber "${MESSAGE_CHUNKS[0]}"
+  checkEmptyBody "$TAIL"
+  checkMaxLength 72 "$MESSAGE"
+fi
