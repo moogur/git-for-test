@@ -16,6 +16,14 @@ jobs:
         run: |
           ls -la .
 
-      - name: "Echo tags"
+      - name: "Echo git folder"
+        run: |
+          ls -la ./.git
+
+      - name: "Echo refs folder"
+        run: |
+          ls -la ./.git/refs
+
+      - name: "Echo tags folder"
         run: |
           ls -la ./.git/refs/tags
