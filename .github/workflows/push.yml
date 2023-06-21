@@ -1,0 +1,26 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Minio Deploy
+        uses: hkdobrev/minio-deploy-action@v1
+        with:
+          endpoint: ${{ secrets.MINIO_ENDPOINT }}
+          access_key: ${{ secrets.MINIO_ACCESS_KEY }}
+          secret_key: ${{ secrets.MINIO_SECRET_KEY }}
+          bucket: ${{ secrets.MINIO_BUCKET }}
+          source_dir: "src"
+          target_dir: "/"
