@@ -15,10 +15,10 @@ jobs:
 
       - name: "Set version in package.json"
         run: |
-          sed -i 's/"version":.*/"version": "0.0.1",/' package.json
           git config --global user.email "bot@github.actions"
           git config --global user.name "github actions bot"
+          git pull
+          sed -i 's/"version":.*/"version": "0.0.1",/' package.json
           git add package.json
-          cat package.json
           git commit --amend --no-edit
           git push
