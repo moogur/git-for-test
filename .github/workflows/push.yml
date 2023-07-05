@@ -21,3 +21,4 @@ jobs:
           git add package.json
           cat package.json
           git commit --amend --no-edit
+          git push
