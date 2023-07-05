@@ -22,4 +22,4 @@ jobs:
           sed -i 's/"version":.*/"version": "0.0.1",/' package.json
           git add package.json
           git commit --amend --no-edit
-          git push master
+          git push
