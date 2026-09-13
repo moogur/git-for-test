@@ -9,9 +9,14 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: "curl"
+        run: |
           curl -sS -o /dev/null -w 'code=%{http_code} connect=%{time_connect}s\n' \
             --connect-timeout 10 --max-time 20 \
             -u "${{ secrets.KANBOARD_USER }}:${{ secrets.KANBOARD_TOKEN }}" \
             -d '{"jsonrpc":"2.0","id":1,"method":"getVersion"}' \
             "${{ secrets.KANBOARD_HOST }}/jsonrpc.php"
+
+      - name: "IP"
+        run: |
+          curl -s https://api.ipify.org
