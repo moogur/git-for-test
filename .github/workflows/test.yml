@@ -1,5 +1,9 @@
 name: Kanboard reachability
-on: workflow_dispatch
+
+on:
+  push:
+    branches:
+      - "**"
 
 jobs:
   ping:
